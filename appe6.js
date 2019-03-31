@@ -18,10 +18,10 @@ class UI {
 
 		//insert cols into the table
 		row.innerHTML = `<td>${book.title}</td>
-										<td>${book.author}</td>
-										<td>${book.category}</td>
-										<td>${book.year}</td>
-										<td><a href="#" class="delete">X<a></td>`;
+                    <td>${book.author}</td>
+                    <td>${book.category}</td>
+                    <td>${book.year}</td>
+                    <td><a href="#" class="delete">X<a></td>`;
 		list.appendChild(row);
 		row.book = book;
 	}
@@ -71,6 +71,13 @@ class Store {
 		} else {
 			//read the JSOM object and translate it into an array of object
 			books = JSON.parse(localStorage.getItem('books'));
+			books.sort((book1, book2) => {
+				if (book1.title < book2.title) {
+					return -1;
+				} else {
+					return 1;
+				}
+			});
 		}
 		return books;
 	}
